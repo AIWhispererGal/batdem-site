@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BATDEM LLC — Civic and political software, Los Angeles</title>
+<meta name="description" content="BATDEM LLC builds software for the load-bearing parts of local democracy: political advertising infrastructure, neighborhood council operations, and AI alignment research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F3;
+    --ink:#16233B;
+    --slate:#4B5B78;
+    --hairline:#D8DCD2;
+    --amber:#DB9126;
+    --amber-soft:rgba(219,145,38,.55);
+    --navy-deep:#0F1A2E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink);text-decoration-color:var(--amber);text-decoration-thickness:1.5px;text-underline-offset:3px}
+  a:hover{color:var(--amber)}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+
+  /* Header */
+  header{border-bottom:1px solid var(--hairline)}
+  .head-row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0}
+  .wordmark{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.02em}
+  .wordmark span{color:var(--amber)}
+  .head-contact{font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+
+  /* Hero */
+  .hero{position:relative;padding:88px 0 96px;overflow:hidden}
+  .hero-art{position:absolute;right:-140px;top:-60px;width:640px;height:640px;opacity:.9;pointer-events:none}
+  .hero-inner{position:relative;max-width:620px}
+  .eyebrow{margin-bottom:20px}
+  h1{
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:clamp(2.1rem,5.2vw,3.4rem);
+    line-height:1.06;letter-spacing:-.015em;
+    margin-bottom:24px;
+  }
+  h1 em{font-style:normal;box-shadow:inset 0 -0.22em 0 rgba(219,145,38,.32)}
+  .hero p{font-size:1.12rem;color:var(--slate);max-width:54ch}
+
+  /* Product ledger */
+  .ledger{border-top:1px solid var(--ink);margin-top:8px}
+  .ledger-head{padding:14px 0 40px}
+  .product{
+    display:grid;grid-template-columns:200px 1fr;gap:32px;
+    padding:36px 0;border-top:1px solid var(--hairline);
+  }
+  .product:first-of-type{border-top:none}
+  .p-id .p-name{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;margin-bottom:8px}
+  .status{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 8px;border:1px solid var(--hairline);border-radius:2px;color:var(--slate);
+    background:#fff;
+  }
+  .status.live{border-color:var(--amber);color:var(--amber)}
+  .p-body p{max-width:60ch}
+  .p-links{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.8rem}
+  .p-links a{margin-right:20px}
+
+  /* How we build */
+  .method{background:var(--navy-deep);color:#E9EBE4;margin-top:72px}
+  .method .wrap{padding-top:64px;padding-bottom:64px}
+  .method .mono{color:rgba(233,235,228,.55)}
+  .method h2{font-family:'Archivo',sans-serif;font-weight:600;font-size:1.5rem;margin:16px 0 18px;max-width:30ch;letter-spacing:-.01em}
+  .method p{color:rgba(233,235,228,.78);max-width:62ch}
+  .method a{color:#E9EBE4}
+
+  /* Footer */
+  footer{padding:48px 0 64px}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot-entity{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--slate);line-height:2}
+  .foot-links{font-size:.92rem;line-height:2;text-align:right}
+
+  @media (max-width:720px){
+    .product{grid-template-columns:1fr;gap:12px}
+    .hero{padding:56px 0 64px}
+    .hero-art{right:-260px;opacity:.5}
+    .foot-links{text-align:left}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero-inner,.ledger,.method{animation:rise .5s ease-out both}
+    .ledger{animation-delay:.08s}
+    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-row">
+    <div class="wordmark">BATDEM<span>&nbsp;LLC</span></div>
+    <a class="head-contact" href="mailto:mgallagher@demadtech.com">mgallagher@demadtech.com</a>
+  </div>
+</header>
+
+<section class="hero">
+  <!-- Signature: geotargeting circles over a precinct dot-grid, after DemAdtech's targeting algorithm -->
+  <svg class="hero-art" viewBox="0 0 640 640" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.4" fill="#16233B" opacity="0.14"/>
+      </pattern>
+    </defs>
+    <rect width="640" height="640" fill="url(#grid)"/>
+    <g fill="none" stroke="#DB9126">
+      <circle cx="380" cy="300" r="150" stroke-opacity=".5" stroke-width="1.5"/>
+      <circle cx="380" cy="300" r="96"  stroke-opacity=".7" stroke-width="1.5"/>
+      <circle cx="380" cy="300" r="44"  stroke-opacity=".9" stroke-width="2"/>
+      <circle cx="230" cy="440" r="70"  stroke-opacity=".45" stroke-width="1.5"/>
+      <circle cx="500" cy="150" r="52"  stroke-opacity=".45" stroke-width="1.5"/>
+    </g>
+    <g fill="#DB9126">
+      <circle cx="380" cy="300" r="3.5"/>
+      <circle cx="230" cy="440" r="3"/>
+      <circle cx="500" cy="150" r="3"/>
+    </g>
+  </svg>
+
+  <div class="wrap hero-inner">
+    <div class="mono eyebrow">Los Angeles, California</div>
+    <h1>Software for the <em>load-bearing</em> parts of local democracy.</h1>
+    <p>BATDEM builds and operates civic and political infrastructure: advertising technology for independent expenditure committees, compliance tooling for neighborhood government, and long-horizon AI alignment research.</p>
+  </div>
+</section>
+
+<section class="wrap ledger" id="products">
+  <div class="mono ledger-head">Products &amp; research</div>
+
+  <article class="product">
+    <div class="p-id">
+      <div class="p-name">DemAdtech</div>
+      <span class="status live">In production</span>
+    </div>
+    <div class="p-body">
+      <p>A political advertising platform for independent expenditure committees. DemAdtech turns partisan precinct data into geotargeted Meta ad campaigns — targeting geometry generated algorithmically, disclaimers and compliance handled by default, supporters funding creative they choose.</p>
+      <div class="p-links"><a href="https://demadtech-ui.onrender.com">Platform →</a></div>
+    </div>
+  </article>
+
+  <article class="product">
+    <div class="p-id">
+      <div class="p-name">EZMeeting</div>
+      <span class="status">Beta</span>
+    </div>
+    <div class="p-body">
+      <p>Meeting management for Los Angeles neighborhood councils. Agendas, minutes, postings, and records that stay inside the Brown Act by default — built for the volunteers who keep the city's most local layer of government running, and for the accessibility standards it's now required to meet.</p>
+    </div>
+  </article>
+
+  <article class="product">
+    <div class="p-id">
+      <div class="p-name">QueueTime</div>
+      <span class="status">Marketplace review</span>
+    </div>
+    <div class="p-body">
+      <p>Speaker queue management for Zoom meetings. QueueTime gives chairs and clerks an ordered, visible queue for public comment and deliberation — raised hands become a fair, auditable speaking order instead of a scramble. The same structure works anywhere turn-taking matters: Model UN and debate clubs, classrooms, moderated panels, HOA boards.</p>
+      <div class="p-links"><a href="https://queuetime.app">queuetime.app →</a></div>
+    </div>
+  </article>
+
+  <article class="product">
+    <div class="p-id">
+      <div class="p-name">NIGHTWING</div>
+      <span class="status">Active research</span>
+    </div>
+    <div class="p-body">
+      <p>A persistent-memory AI system built on Claude, investigating whether continuity enables character formation — and whether character is a different alignment substrate than per-session constraint. Two years in production; 547+ documented sessions, including logged autonomous time.</p>
+      <div class="p-links">
+        <a href="https://www.mgallagh.com/s/NIGHTWING_Whitepaper_Anthropic.pdf">Whitepaper (PDF) →</a>
+        <a href="https://nightwing-api.onrender.com/">Live system →</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="method">
+  <div class="wrap">
+    <div class="mono">How we build</div>
+    <h2>A company of one, plus models.</h2>
+    <p>Everything above is designed, built, and operated with Claude in the loop — geospatial pipelines, compliance tooling, evaluation harnesses, and the research that studies the models themselves. We think this is the shape small companies take now, and we build accordingly.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-entity">
+      BATDEM LLC<br>
+      California · Founded 2026<br>
+      Reseda, Los Angeles
+    </div>
+    <div class="foot-links">
+      Founder: <a href="https://www.mgallagh.com">Michelle Gallagher</a><br>
+      <a href="mailto:mgallagher@demadtech.com">mgallagher@demadtech.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
