@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <filter id="glowBig" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="16" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9" result="b1"/>
+      <feMerge>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="neon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8deaff"/>
+      <stop offset="0.5" stop-color="#2eb8ff"/>
+      <stop offset="1" stop-color="#0f86e8"/>
+    </linearGradient>
+    <linearGradient id="dFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151d29"/>
+      <stop offset="0.5" stop-color="#1d2938"/>
+      <stop offset="1" stop-color="#0b1017"/>
+    </linearGradient>
+    <linearGradient id="batSheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#10161f"/>
+      <stop offset="1" stop-color="#04060a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="1024" fill="#070a10"/>
+
+  <g stroke="#16202e" stroke-width="3" fill="none" opacity="0.9">
+    <path d="M 40 120 H 250 L 320 190"/>
+    <circle cx="326" cy="196" r="7" fill="#16202e" stroke="none"/>
+    <path d="M 984 200 H 860 L 810 250 V 320"/>
+    <circle cx="810" cy="328" r="7" fill="#16202e" stroke="none"/>
+    <path d="M 60 830 H 200 L 270 900 H 400"/>
+    <circle cx="408" cy="900" r="7" fill="#16202e" stroke="none"/>
+    <path d="M 980 780 H 850 L 800 830 V 950"/>
+    <circle cx="800" cy="958" r="7" fill="#16202e" stroke="none"/>
+    <path d="M 950 60 V 130 L 900 180"/>
+    <circle cx="894" cy="186" r="7" fill="#16202e" stroke="none"/>
+  </g>
+
+  <g filter="url(#glowBig)">
+    <path fill-rule="evenodd"
+          d="M 296 170 L 600 170 C 800 170 892 322 892 512 C 892 702 800 854 600 854 L 296 854 Z M 424 296 L 588 296 C 710 296 762 398 762 512 C 762 626 710 728 588 728 L 424 728 Z"
+          fill="url(#dFill)" stroke="url(#neon)" stroke-width="11" stroke-linejoin="round"/>
+  </g>
+
+  <g filter="url(#glowSoft)">
+    <path d="M 108 302 C 220 258 356 344 458 438 C 468 426 476 420 486 418 L 499 376 C 511 386 519 396 523 408 C 531 404 539 404 547 407 C 551 394 559 383 571 372 L 582 416 C 591 419 599 426 607 436 C 700 330 806 274 915 272 C 862 352 828 424 806 424 C 760 448 726 466 700 510 C 660 486 636 494 612 512 C 606 556 592 592 574 618 L 586 652 L 560 636 L 544 678 L 524 638 L 508 662 L 500 620 C 478 588 468 552 466 512 C 428 500 400 494 386 512 C 348 462 306 452 258 452 C 208 400 160 350 108 302 Z"
+          fill="url(#batSheen)" stroke="url(#neon)" stroke-width="7" stroke-linejoin="round"/>
+    <g stroke="url(#neon)" stroke-width="5" fill="none" opacity="0.85" stroke-linecap="round">
+      <path d="M 218 372 C 300 384 360 420 420 470"/>
+      <path d="M 320 400 C 372 428 410 462 440 500"/>
+      <path d="M 810 340 C 740 360 686 398 646 452"/>
+      <path d="M 710 386 C 668 412 640 448 624 486"/>
+    </g>
+  </g>
+</svg>
