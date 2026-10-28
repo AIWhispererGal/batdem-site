@@ -83,6 +83,17 @@ background:#fff;
 .p-links{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.8rem}
 .p-links a{margin-right:20px}
 
+/* Demos */
+.demos{margin-top:72px}
+.demos-head{padding:14px 0 8px;border-top:1px solid var(--ink)}
+.demos-intro{color:var(--slate);max-width:62ch;margin-bottom:28px}
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.demo{display:block;border:1px solid var(--hairline);border-radius:3px;padding:20px 22px;background:#fff;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.demo:hover{border-color:var(--amber);color:var(--ink);transform:translateY(-2px)}
+.demo .d-name{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-.01em;margin:8px 0 8px}
+.demo p{font-size:.95rem;color:var(--slate);line-height:1.5}
+.demo .d-cta{display:block;margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--amber)}
+
 /* How we build */
 .method{background:var(--navy-deep);color:#E9EBE4;margin-top:72px}
 .method .wrap{padding-top:64px;padding-bottom:64px}
@@ -105,7 +116,7 @@ footer{padding:48px 0 64px}
 .foot-links{text-align:left}
 }
 @media (prefers-reduced-motion:no-preference){
-.hero-inner,.ledger,.method{animation:rise .5s ease-out both}
+.hero-inner,.ledger,.demos,.method{animation:rise .5s ease-out both}
 .ledger{animation-delay:.08s}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 }
@@ -263,6 +274,63 @@ footer{padding:48px 0 64px}
 <div class="p-links">FPPC ID #1491643</div>
 </div>
 </article>
+</section>
+
+<section class="wrap demos" id="demos">
+<div class="mono demos-head">Demos &amp; experiments</div>
+<p class="demos-intro">Browser apps built in the same loop. Most run entirely client-side with nothing to install and no account; AuthWords runs on its own host because it keeps a database.</p>
+<div class="demo-grid">
+
+<a class="demo" href="demos/vote-atlas/">
+<span class="mono">Civic data</span>
+<div class="d-name">Vote Atlas</div>
+<p>Congressional relationship explorer. Trace roll-call alignment across the House and Senate, see which ties shift over time, and keep procedural behavior in the record.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+<a class="demo" href="demos/queryquest/">
+<span class="mono">Adaptive learning</span>
+<div class="d-name">QueryQuest</div>
+<p>Learn PostgreSQL, MySQL, and SQL Server one small win at a time, with a real SQL sandbox running in the browser. Paths run from well below a junior interview to beyond a senior one.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+<a class="demo" href="demos/shellquest/">
+<span class="mono">Adaptive learning</span>
+<div class="d-name">ShellQuest</div>
+<p>Adaptive trainer for CMD, WSL, and Bash. Questions adjust to a skill rating and resurface past misses until the command line is fluent.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+<a class="demo" href="demos/lsat-dojo/">
+<span class="mono">Adaptive learning</span>
+<div class="d-name">LSAT Logical Reasoning Dojo</div>
+<p>Adaptive drill for LSAT logical reasoning. Difficulty tracks performance, and the question types you miss come back until they stick.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+<a class="demo" href="demos/calcare/">
+<span class="mono">Policy simulation</span>
+<div class="d-name">CalCare Mix &amp; Match</div>
+<p>Assemble a California single-payer measure from real and AI-drafted provisions, then see the cost, budget impact, federal funding exposure, and who would fight it. An illustrative workbench, not a fiscal estimate.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+<a class="demo" href="https://authwords-app.netlify.app/demo">
+<span class="mono">Ed tech · hosted on Netlify</span>
+<div class="d-name">AuthWords</div>
+<p>Authorship verification that flips the question from "did an AI write this?" to "did this student write this?" A reference app with a public style-index demo and a five-part production blueprint.</p>
+<span class="d-cta">Open demo ↗</span>
+</a>
+
+<a class="demo" href="demos/neuron-evolution/">
+<span class="mono">Simulation</span>
+<div class="d-name">Neuron Evolution</div>
+<p>A biological neural arithmetic lab. Grow and evolve small networks of neurons and watch computation emerge from the wiring.</p>
+<span class="d-cta">Open demo →</span>
+</a>
+
+</div>
 </section>
 
 <section class="method">
