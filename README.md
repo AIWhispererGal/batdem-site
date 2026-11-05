@@ -25,3 +25,11 @@ Single-page static site for BATDEM LLC, served at batdem.com via a Render Static
 ## Ongoing updates (agent loop)
 
 All content lives in `index.html`. To update the site: edit, commit, push to `main`. Render redeploys automatically — no dashboard interaction needed. See the `batdem-site-maintenance` skill for the rules agents should follow when editing.
+
+## Demos
+
+`demos/` holds standalone single-file apps linked from the landing page.
+
+- **`demos/queryquest/` is generated.** Its source is the private `adaptive-sql-learning` repo; a GitHub Action there builds the app and pushes the result here on every push to its `main`. Edit the app in that repo, not here, or the next deploy overwrites your change. `images/sql-mascot.png` belongs to it too.
+- The other demos are edited in place.
+
