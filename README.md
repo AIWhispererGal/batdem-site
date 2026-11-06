@@ -28,8 +28,15 @@ All content lives in `index.html`. To update the site: edit, commit, push to `ma
 
 ## Demos
 
-`demos/` holds standalone single-file apps linked from the landing page.
+`demos/` holds standalone single-file apps linked from the landing page. **Every folder in it is generated**: each app lives in its own repository, and a GitHub Action there builds the app and pushes the result here on every push to that repository's `main`. Edit the app in its repository, not here, or the next deploy overwrites your change.
 
-- **`demos/queryquest/` is generated.** Its source is the private `adaptive-sql-learning` repo; a GitHub Action there builds the app and pushes the result here on every push to its `main`. Edit the app in that repo, not here, or the next deploy overwrites your change. `images/sql-mascot.png` belongs to it too.
-- The other demos are edited in place.
+| Demo | Source repository | App folder in that repository |
+|---|---|---|
+| `demos/queryquest` | `adaptive-sql-learning` | `adaptive-sql-trainer` |
+| `demos/shellquest` | `adaptive-cli-learning` | `visual-cli-learning-platform` |
+| `demos/lsat-dojo` | `adaptive-lsat-learning` | `adaptive-lsat-trainer` |
+| `demos/neuron-evolution` | `neuron-evolution-game` | `neuron-evolution-game` |
+| `demos/calcare` | `single-payer-game` | `health-plan-impact-simulator` |
+| `demos/vote-atlas` | `congressional-voting-correlation-tool` | `.` |
 
+The shared workflow is `.github/workflows/publish-demo.yml` here. Each source repository has a short caller workflow that names its demo folder and app folder, plus an Actions secret `BATDEM_SITE_TOKEN` (a fine-grained token with Contents: Read and write on this repository). To add a new demo: copy one of those caller workflows into the new repository, set `demo` and `app_dir`, add the secret, and link `demos/<name>/` from `index.html`.

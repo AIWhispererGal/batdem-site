@@ -1,0 +1,106 @@
+# Reusable workflow: build a Vite single-file app from the calling repository and
+# publish it to demos/<demo>/ in this repository. Render redeploys batdem.com on push.
+#
+# Called from each app repository like this:
+#
+#   jobs:
+#     publish:
+#       uses: AIWhispererGal/batdem-site/.github/workflows/publish-demo.yml@main
+#       with:
+#         demo: shellquest                       # folder under demos/
+#         app_dir: visual-cli-learning-platform  # where package.json lives ("." if at the root)
+#       secrets:
+#         BATDEM_SITE_TOKEN: ${{ secrets.BATDEM_SITE_TOKEN }}
+#
+# BATDEM_SITE_TOKEN is a fine-grained GitHub token with "Contents: Read and write"
+# on AIWhispererGal/batdem-site only. Each calling repository needs it as an Actions secret.
+name: Publish a demo
+
+on:
+  workflow_call:
+    inputs:
+      demo:
+        description: Folder name under demos/ (letters, digits, hyphens)
+        required: true
+        type: string
+      app_dir:
+        description: Directory containing package.json, relative to the repository root
+        required: false
+        type: string
+        default: '.'
+      node_version:
+        required: false
+        type: string
+        default: '22'
+    secrets:
+      BATDEM_SITE_TOKEN:
+        required: true
+
+concurrency:
+  group: publish-demo-${{ inputs.demo }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check inputs and the publishing token
+        env:
+          TOKEN: ${{ secrets.BATDEM_SITE_TOKEN }}
+          DEMO: ${{ inputs.demo }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Secret BATDEM_SITE_TOKEN is not set in the calling repository. Add the fine-grained token (Contents: Read and write on AIWhispererGal/batdem-site) under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          if ! printf '%s' "$DEMO" | grep -Eq '^[a-z0-9-]+$'; then
+            echo "::error::demo must be a simple folder name (letters, digits, hyphens), got '$DEMO'."
+            exit 1
+          fi
+
+      - name: Check out the app
+        uses: actions/checkout@v4
+        with:
+          path: app
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: npm
+          cache-dependency-path: app/${{ inputs.app_dir }}/package-lock.json
+
+      - name: Install, check, build
+        working-directory: app/${{ inputs.app_dir }}
+        run: |
+          npm ci
+          npm run typecheck --if-present
+          npm test --if-present
+          npm run build
+          test -f dist/index.html || { echo "::error::Build produced no dist/index.html"; exit 1; }
+
+      - name: Check out batdem-site
+        uses: actions/checkout@v4
+        with:
+          repository: AIWhispererGal/batdem-site
+          token: ${{ secrets.BATDEM_SITE_TOKEN }}
+          path: site
+
+      - name: Copy the build into demos/${{ inputs.demo }}
+        run: |
+          mkdir -p "site/demos/${{ inputs.demo }}"
+          rsync -a --delete "app/${{ inputs.app_dir }}/dist/" "site/demos/${{ inputs.demo }}/"
+
+      - name: Commit and push if anything changed
+        working-directory: site
+        env:
+          SOURCE: ${{ github.repository }}@${{ github.sha }}
+        run: |
+          git config user.name "demo-publisher[bot]"
+          git config user.email "demo-publisher@users.noreply.github.com"
+          git add "demos/${{ inputs.demo }}"
+          if git diff --cached --quiet; then
+            echo "demos/${{ inputs.demo }} already matches the build; nothing to push."
+            exit 0
+          fi
+          git commit -m "Update ${{ inputs.demo }} demo from ${SOURCE:0:60}"
+          git push origin HEAD:main
