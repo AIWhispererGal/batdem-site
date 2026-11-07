@@ -67,7 +67,7 @@ jobs:
         with:
           node-version: ${{ inputs.node_version }}
           cache: npm
-          cache-dependency-path: app/${{ inputs.app_dir }}/package-lock.json
+          cache-dependency-path: ${{ inputs.app_dir == '.' && 'app/package-lock.json' || format('app/{0}/package-lock.json', inputs.app_dir) }}
 
       - name: Install, check, build
         working-directory: app/${{ inputs.app_dir }}
